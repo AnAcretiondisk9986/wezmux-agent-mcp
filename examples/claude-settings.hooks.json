@@ -1,0 +1,100 @@
+{
+  "permissions": {
+    "ask": [
+      "mcp__wezmux-agent__spawn_pane",
+      "mcp__magpie__wezmux-agent__spawn_pane"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node --no-warnings /path/to/wezmux-agent-mcp/wezmux-hook.mjs session-start"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node --no-warnings /path/to/wezmux-agent-mcp/wezmux-hook.mjs needs-input"
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__.*wezmux-agent__spawn_pane",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node --no-warnings /path/to/wezmux-agent-mcp/wezmux-hook.mjs spawn-guard"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node --no-warnings /path/to/wezmux-agent-mcp/wezmux-hook.mjs prompt-submit"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node --no-warnings /path/to/wezmux-agent-mcp/wezmux-hook.mjs tool-use"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node --no-warnings /path/to/wezmux-agent-mcp/wezmux-hook.mjs notification"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node --no-warnings /path/to/wezmux-agent-mcp/wezmux-hook.mjs stop"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node --no-warnings /path/to/wezmux-agent-mcp/wezmux-hook.mjs subagent-start"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node --no-warnings /path/to/wezmux-agent-mcp/wezmux-hook.mjs subagent-stop"
+          }
+        ]
+      }
+    ]
+  }
+}
